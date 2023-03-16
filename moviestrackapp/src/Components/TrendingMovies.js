@@ -37,7 +37,6 @@ const TrendingMovies = () => {
             width: 120,
           }}
         />
-
         <Text
           style={{
             color: Colors.textColor,
