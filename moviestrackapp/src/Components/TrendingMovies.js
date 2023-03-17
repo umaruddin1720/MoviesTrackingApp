@@ -7,7 +7,10 @@ import {
   FlatList,
   Image,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
 import {POSTER_IMAGE} from '../config';
 import {Colors} from '../Styles/Colors';
 import {GET} from '../Services/Api';
@@ -15,6 +18,7 @@ import {GET} from '../Services/Api';
 const TrendingMovies = () => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getMovies = async () => {
@@ -27,7 +31,11 @@ const TrendingMovies = () => {
 
   const displayMovies = ({item}) => {
     return (
-      <View style={{marginHorizontal: 5}}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Details', {movieID: item.id});
+        }}
+        style={{marginHorizontal: 5}}>
         <Image
           source={{uri: `${POSTER_IMAGE}${item.poster_path}`}}
           style={{
@@ -46,7 +54,7 @@ const TrendingMovies = () => {
           }}>
           {item?.original_title}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

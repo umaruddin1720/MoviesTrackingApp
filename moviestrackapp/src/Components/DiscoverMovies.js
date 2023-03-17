@@ -1,13 +1,13 @@
 //import liraries
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import {SliderBox} from 'react-native-image-slider-box';
 import {IMAGE_POSTER} from '../config';
 import {Colors} from '../Styles/Colors';
 import {GET} from '../Services/Api';
 
 // create a component
-const DiscoverMovies = () => {
+const DiscoverMovies = props => {
   const [movies, setMovies] = useState([]);
   const [images, setImages] = useState([]);
 
@@ -28,7 +28,13 @@ const DiscoverMovies = () => {
   return (
     <View>
       {images.length > 0 && (
-        <SliderBox images={images} dotColor={Colors.secondaryColor} />
+        <SliderBox
+          images={images}
+          dotColor={Colors.secondaryColor}
+          onCurrentImagePressed={index =>
+            props.navigation.navigate('Details', {movieID: movies[index].id})
+          }
+        />
       )}
     </View>
   );

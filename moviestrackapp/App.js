@@ -6,6 +6,7 @@ import Home from './src/screens/Home/Home';
 import {Colors} from './src/Styles/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native';
+import Details from './src/screens/Details/Details';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -13,6 +14,11 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
         <Stack.Screen name="Home" component={Home} options={headerStyle} />
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -26,12 +32,10 @@ const headerStyle = {
       <Icon name="menu" size={30} color={Colors.textColor} />
     </TouchableOpacity>
   ),
-
   headerRight: () => (
     <TouchableOpacity>
       <Icon name="search" size={30} color={Colors.textColor} />
     </TouchableOpacity>
   ),
 };
-
 export default App;

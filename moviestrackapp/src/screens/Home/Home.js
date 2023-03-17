@@ -7,10 +7,10 @@ import TrendingPeople from '../../Components/TrendingPeople';
 import TrendingMovies from '../../Components/TrendingMovies';
 
 // create a component
-const Home = () => {
+const Home = props => {
   return (
     <View style={styles.container}>
-      <DiscoverMovies />
+      <DiscoverMovies navigation={props.navigation} />
       <TrendingPeople />
       <TrendingMovies />
     </View>
